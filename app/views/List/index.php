@@ -15,7 +15,7 @@
                 <a href="#"><span class="fa fa-cogs"></span> Services</a>
             </li>
             <li>
-                <a href="#"><span class="fa fa-paper-plane"></span> Contacts</a>
+                <a href="<?= BASEURL ?>/Login"><span class="fa fa-paper-plane"></span> Logout</a>
             </li>
         </ul>
     </nav>
@@ -39,10 +39,10 @@
             <div class="card">
                 <img src="<?= BASEURL ?>/img/<?= basename($row['gambar']); ?>" alt="gambar">
                 <div class="card-body">
-                    <h5 class="card-title"><?= $row["nama_customer"]; ?></h5>
+                    <h5 class="card-title"><?= $row["nama"]; ?></h5>
                     <p class="card-text"><?= $row["alamat"]; ?></p>
-                    <p class="card-text"><?= $row["id_jenis"]; ?></p>
-                    <p class="card-text"><?= $row["id_harga"]; ?></p>
+                    <p class="card-text"><?= $row["jenis"]; ?></p>
+                    <p class="card-text"><?= $row["harga"]; ?></p>
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal<?php echo $row["id_customer"]; ?>">Edit</button>
                         <a href='<?= BASEURL; ?>/ListController/hapusData/<?= $row['id_customer']; ?>' class="btn btn-danger">Hapus</a>
@@ -68,7 +68,7 @@
                     <form method="POST" action="<?= BASEURL; ?>/ListController/editData/<?= $row['id_customer'] ?>">
                         <div class="form-group">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $row["nama_customer"]; ?>">
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $row["nama"]; ?>">
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
@@ -76,11 +76,11 @@
                         </div>
                         <div class="form-group">
                             <label for="jenis">Jenis</label>
-                            <input type="text" class="form-control" id="jenis" name="jenis" value="<?= $row["id_jenis"]; ?>">
+                            <input type="text" class="form-control" id="jenis" name="jenis" value="<?= $row["jenis"]; ?>">
                         </div>
                         <div class="form-group">
                             <label for="harga">Harga</label>
-                            <input type="text" class="form-control" id="harga" name="harga" value="<?= $row["id_harga"]; ?>">
+                            <input type="text" class="form-control" id="harga" name="harga" value="<?= $row["harga"]; ?>">
                         </div>
                         <input type="hidden" name="id_customer" value="<?= $row["id_customer"]; ?>">
                         <button type="submit" class="btn btn-primary" value="Simpan Perubahan">Simpan Perubahan</button>

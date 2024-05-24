@@ -74,23 +74,28 @@ public function tambahData($data)
     } else {
         if (move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)) {
             // Jika gambar berhasil diunggah, tambahkan data mobil ke database
-            $query = "INSERT INTO " . $this->table . "(nama_customer, alamat, id_jenis, id_harga, gambar) 
-                      VALUES (:nama_customer, :alamat, :id_jenis, :id_harga, :gambar)";
+            $query = "INSERT INTO " . $this->table . "
+                      VALUES ('', :nama, :alamat, :jenis, :harga, :gambar)";
 
-            $this->db->query($query);
-            $this->db->bind(":nama_customer", $data["nama"]);
-            $this->db->bind(":alamat", $data["alamat"]);
-            $this->db->bind(":id_jenis", $data["jenis"]);
-            $this->db->bind(":id_harga", $data["harga"]);
-            $this->db->bind(":gambar", $target_file);
+            try {
+                $this->db->query($query);
+                $this->db->bind(":nama", $data["nama"]);
+                $this->db->bind(":alamat", $data["alamat"]);
+                $this->db->bind(":jenis", $data["jenis"]);
+                $this->db->bind(":harga", $data["harga"]);
+                $this->db->bind(":gambar", $target_file);
 
-            $this->db->execute();
-            return $this->db->rowCount();
+                $this->db->execute();
+                return $this->db->rowCount();
+            } catch (Exception $e) {
+                echo "Terjadi kesalahan: " . $e->getMessage();
+            }
         } else {
             echo "Maaf, terjadi kesalahan saat mengunggah file.";
         }
     }
 }
+
 
 public function getDataById($id)
   {
@@ -104,18 +109,18 @@ public function editData($data, $id_customer)
 {
     // Update data without updating the image
     $query = "UPDATE " . $this->table . " SET 
-                nama_customer = :nama_customer,
+                nama = :nama,
                 alamat = :alamat,
-                id_jenis = :id_jenis,
-                id_harga = :id_harga
+                jenis = :jenis,
+                harga = :harga
               WHERE id_customer = :id_customer";
 
     $this->db->query($query);
     $this->db->bind(":id_customer", $id_customer);
-    $this->db->bind(":nama_customer", $data["nama"]);
+    $this->db->bind(":nama", $data["nama"]);
     $this->db->bind(":alamat", $data["alamat"]);
-    $this->db->bind(":id_jenis", $data["jenis"]);
-    $this->db->bind(":id_harga", $data["harga"]);
+    $this->db->bind(":jenis", $data["jenis"]);
+    $this->db->bind(":harga", $data["harga"]);
 
     $this->db->execute();
     return $this->db->rowCount();

@@ -13,7 +13,7 @@
           <h1>N.</h1>
         </div>
         <h1>Nature Archive</h1>
-        <form action="<?= BASEURL; ?>/Login/loginUser" method="POST">
+        <form action="<?= BASEURL; ?>/Register/registerUser" method="POST">
           <div class="input-field">
             <input type="text" name="username" class="input" placeholder="Username" required />
           </div>
@@ -27,16 +27,13 @@
             />
           </div>
           <div class="input-field">
-            <input type="submit" class="submit" value="Login" />
+            <input type="submit" class="submit" value="Register" />
           </div>
         </form>
         <div class="bottom">
           <div class="left">
             <input type="checkbox" id="check" />
             <label for="check"> Save login info?</label>
-          </div>
-          <div class="right">
-            <label><a href="<?= BASEURL ?>/Register">Don't have account?</a></label>
           </div>
         </div>
       </div>

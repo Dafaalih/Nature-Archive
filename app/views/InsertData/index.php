@@ -15,7 +15,7 @@
                 <a href="#"><span class="fa fa-cogs"></span> Services</a>
             </li>
             <li>
-                <a href="#"><span class="fa fa-paper-plane"></span> Contacts</a>
+                <a href="<?= BASEURL ?>/Login"><span class="fa fa-paper-plane"></span> Logout</a>
             </li>
         </ul>
     </nav>
